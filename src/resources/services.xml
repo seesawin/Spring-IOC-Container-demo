@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="logicService0" class="main.service.impl.LogicServiceImpl">
+		<property name="connectDao" ref="connectDao" />
+    </bean>
+    
+	<bean id="logicService1" class="main.service.impl.LogicServiceImpl">
+		<property name="connectDao" ref="dataGetter" />
+    </bean>
+    
+	<bean id="logicService2" class="main.service.impl.LogicServiceImpl">
+		<property name="connectDao" ref="dataFinder" />
+    </bean>
+    
+</beans>
