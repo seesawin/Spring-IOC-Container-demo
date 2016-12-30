@@ -5,6 +5,7 @@ import org.springframework.beans.factory.NoSuchBeanDefinitionException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 
+//use util, reference form https://my.oschina.net/u/225084/blog/167842
 public class SpringContextsUtil implements ApplicationContextAware{
 	private static ApplicationContext applicationContext;    //Spring应用上下文环境   
 	  /**

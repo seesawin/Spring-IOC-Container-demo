@@ -1,5 +1,6 @@
 package main.service.impl;
 
+import java.beans.ConstructorProperties;
 import java.util.List;
 import java.util.Map;
 
@@ -8,26 +9,69 @@ import main.service.ifac.LogicService;
 
 public class LogicServiceImpl implements LogicService{
 	
-	private ConnectDao connectDao;
-	private ConnectDao dataGetter;
-	private ConnectDao dataFinder;
+	private ConnectDao connectDaoConstructor;
+	private ConnectDao connectDaoSetter;
 	
-	public void setConnectDao(ConnectDao connectDao) {
-		this.connectDao = connectDao;
+	public LogicServiceImpl() {
 	}
-
-	public void setDataGetter(ConnectDao dataGetter) {
-		this.dataGetter = dataGetter;
+	
+	// Constructor-based dependency injection
+	public LogicServiceImpl(ConnectDao connectDao) {
+		this.connectDaoConstructor = connectDao;
 	}
-
-	public void setDataFinder(ConnectDao dataFinder) {
-		this.dataFinder = dataFinder;
+	
+	public LogicServiceImpl(ConnectDao connectDao, int i, String str) {
+		this.connectDaoConstructor = connectDao;
 	}
-
-	public String getProductInfo(String name) {
-		List<Map<String, Object>> infoList = connectDao.getInfo();
+	
+	public LogicServiceImpl(int i, String str, ConnectDao connectDao) {
+		this.connectDaoConstructor = connectDao;
+	}
+	
+	@ConstructorProperties({"dao", "b"})
+	public LogicServiceImpl(ConnectDao connectDao, boolean b) {
+		this.connectDaoConstructor = connectDao;
+	}
+	//********************************************************************************
+	
+	// Setter-based dependency injection
+	public void setConnectDao(ConnectDao connectDao0) {
+		this.connectDaoSetter = connectDao0;
+	}
+	//********************************************************************************
+	
+	public String getProductInfo00(String name) {
+		List<Map<String, Object>> infoList = connectDaoConstructor.getInfo();
 		Map<String, Object> infoMap = infoList.get(0);
-		return "Hi " + name + ", the name is " + infoMap.get("name") + ", phone is " + infoMap.get("phone"); 
+		return copmoseInfo(name, infoMap); 
+	}
+	
+	public String getProductInfo01(String name) {
+		List<Map<String, Object>> infoList = connectDaoConstructor.getInfo();
+		Map<String, Object> infoMap = infoList.get(0);
+		return copmoseInfo(name, infoMap); 
+	}
+	
+	public String getProductInfo02(String name) {
+		List<Map<String, Object>> infoList = connectDaoConstructor.getInfo();
+		Map<String, Object> infoMap = infoList.get(0);
+		return copmoseInfo(name, infoMap); 
+	}
+	
+	public String getProductInfo03(String name) {
+		List<Map<String, Object>> infoList = connectDaoConstructor.getInfo();
+		Map<String, Object> infoMap = infoList.get(0);
+		return copmoseInfo(name, infoMap); 
+	}
+	
+	public String getProductInfo10(String name) {
+		List<Map<String, Object>> infoList = connectDaoSetter.getInfo();
+		Map<String, Object> infoMap = infoList.get(0);
+		return copmoseInfo(name, infoMap); 
+	}
+	
+	private String copmoseInfo(String name , Map<String, Object> infoMap) {
+		return "Hi " + name + ", the name is " + infoMap.get("name") + ", phone is " + infoMap.get("phone");  
 	}
 	
 }

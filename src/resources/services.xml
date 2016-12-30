@@ -3,17 +3,50 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans.xsd">
-
-	<bean id="logicService0" class="main.service.impl.LogicServiceImpl">
-		<property name="connectDao" ref="connectDao" />
+        
+	<!-- Constructor-based dependency injection -->
+	<bean id="logicService00" class="main.service.impl.LogicServiceImpl">
+		<constructor-arg ref="connectDao"/>
     </bean>
     
-	<bean id="logicService1" class="main.service.impl.LogicServiceImpl">
+	<bean id="logicService01" class="main.service.impl.LogicServiceImpl">
+		<constructor-arg ref="connectDao"/>
+		<constructor-arg type="int" value="7500000"/>
+    	<constructor-arg type="java.lang.String" value="42"/>
+    </bean>
+    
+    <bean id="logicService02" class="main.service.impl.LogicServiceImpl">
+	    <constructor-arg index="0" value="7500000"/>
+	    <constructor-arg index="1" value="42"/>
+	    <constructor-arg index="2" ref="connectDao"/>
+	</bean>
+	
+    <bean id="logicService03" class="main.service.impl.LogicServiceImpl">
+	    <constructor-arg name="dao" ref="connectDao"/>
+    	<constructor-arg name="b" value="false"/>
+	</bean>
+    <!-- *********************************************************** -->
+    
+	<!-- Setter-based dependency injection -->
+	<bean id="logicService10" class="main.service.impl.LogicServiceImpl">
+		<!-- use alias -->
 		<property name="connectDao" ref="dataGetter" />
     </bean>
-    
-	<bean id="logicService2" class="main.service.impl.LogicServiceImpl">
-		<property name="connectDao" ref="dataFinder" />
-    </bean>
+	<!-- *********************************************************** -->
+
+	<!-- Instantiation with a static factory method -->
+	<bean id="clientService" class="main.service.impl.ClientServiceImpl"
+		factory-method="createInstance" />
+	<!-- *********************************************************** -->
+		
+	<!-- the factory bean, which contains a method called createInstance() -->
+	<bean id="defaultServiceLocator" class="main.util.DefaultServiceLocator">
+	</bean>
+	
+	<!-- the bean to be created via the factory bean -->
+	<bean id="productService"
+	    factory-bean="defaultServiceLocator"
+	    factory-method="createProductServiceInstance"/>
+    <!-- *********************************************************** -->
     
 </beans>

@@ -6,7 +6,6 @@
     
 	<!-- Aliasing a bean outside the bean definition -->
     <alias name="connectDao" alias="dataGetter"/>
-	<alias name="connectDao" alias="dataFinder" />
 
 	<bean id="connectDao" class="main.dao.impl.ConnectDaoImpl"/>
 	
