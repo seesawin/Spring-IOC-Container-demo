@@ -1,4 +1,4 @@
-# Spring_IOC_Container
+# Spring_IOC_Container_XML
 
 This project demonstrates how to use Spring beans in the concept of spring IOC Container.
 
