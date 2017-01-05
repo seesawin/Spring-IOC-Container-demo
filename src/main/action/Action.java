@@ -10,7 +10,7 @@ import main.util.SpringContextsUtil;
 
 public class Action {
 	public static void main(String[] args) {
-		
+
 		// Constructor-based dependency injection
 		ApplicationContext context = new ClassPathXmlApplicationContext(new String[] { "resources/spring.xml" });
 		LogicService service00 = (LogicService) context.getBean("logicService00", LogicService.class);
@@ -29,8 +29,10 @@ public class Action {
 		String info03 = service03.getProductInfo03("SpringContextsUtil");
 		System.out.println("info03:" + info03);
 		
-		boolean isEquals = service00.equals(service01);
-		System.out.println("service Object isEquals: " + isEquals);
+		LogicService service04 = (LogicService) SpringContextsUtil.getBean("logicService04", LogicService.class);
+		String info04 = service03.getProductInfo04("SpringContextsUtil");
+		System.out.println("info04:" + info04);
+		
 		//********************************************************************************
 		
 		// Setter-based dependency injection
@@ -40,15 +42,23 @@ public class Action {
 		//********************************************************************************
 		
 		// via the static factory method 
-		ClientService clientService = (ClientService) SpringContextsUtil.getBean("clientService", ClientService.class);
-		boolean isCreated = clientService.isCreated();
-		System.out.println("isCreated:" + isCreated);
+		ClientService clientService00 = (ClientService) SpringContextsUtil.getBean("clientService00", ClientService.class);
+		String clientInfo00 = clientService00.getClientInfo00("SpringContextsUtil");
+		System.out.println("clientInfo00:" + clientInfo00);
+		
+		ClientService clientService01 = (ClientService) SpringContextsUtil.getBean("clientService01", ClientService.class);
+		String clientInfo01 = clientService01.getClientInfo01("SpringContextsUtil");
+		System.out.println("clientInfo01:" + clientInfo01);
 		//********************************************************************************
 		
 		// via the factory bean
-		ProductService productService = (ProductService) SpringContextsUtil.getBean("productService", ProductService.class);
-		int price = productService.getPrice();
-		System.out.println("price:" + price);
+		ProductService productService00 = (ProductService) SpringContextsUtil.getBean("productService00", ProductService.class);
+		String productInfo00 = productService00.getProductInfo00("SpringContextsUtil");
+		System.out.println("productInfo00:" + productInfo00);
+		
+		ProductService productService01 = (ProductService) SpringContextsUtil.getBean("productService01", ProductService.class);
+		String productInfo01 = productService01.getProductInfo01("SpringContextsUtil");
+		System.out.println("productInfo01:" + productInfo01);
 		//********************************************************************************
 	}
 }

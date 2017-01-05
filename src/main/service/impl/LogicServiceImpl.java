@@ -64,6 +64,12 @@ public class LogicServiceImpl implements LogicService{
 		return copmoseInfo(name, infoMap); 
 	}
 	
+	public String getProductInfo04(String name) {
+		List<Map<String, Object>> infoList = connectDaoConstructor.getInfo();
+		Map<String, Object> infoMap = infoList.get(0);
+		return copmoseInfo(name, infoMap); 
+	}
+	
 	public String getProductInfo10(String name) {
 		List<Map<String, Object>> infoList = connectDaoSetter.getInfo();
 		Map<String, Object> infoMap = infoList.get(0);

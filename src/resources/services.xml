@@ -25,6 +25,13 @@
 	    <constructor-arg name="dao" ref="connectDao"/>
     	<constructor-arg name="b" value="false"/>
 	</bean>
+	
+	<!-- constructor injection using the nested ref element -->
+    <bean id="logicService04" class="main.service.impl.LogicServiceImpl">
+	    <constructor-arg>
+	    	<ref bean="connectDao"/>
+	    </constructor-arg>
+	</bean>
     <!-- *********************************************************** -->
     
 	<!-- Setter-based dependency injection -->
@@ -35,8 +42,15 @@
 	<!-- *********************************************************** -->
 
 	<!-- Instantiation with a static factory method -->
-	<bean id="clientService" class="main.service.impl.ClientServiceImpl"
+	<bean id="clientService00" class="main.service.impl.ClientServiceImpl"
 		factory-method="createInstance" />
+
+	<bean id="clientService01" class="main.service.impl.ClientServiceImpl"
+		factory-method="createInstance">
+		<constructor-arg>
+	    	<ref bean="connectDao"/>
+	    </constructor-arg>
+	</bean>
 	<!-- *********************************************************** -->
 		
 	<!-- the factory bean, which contains a method called createInstance() -->
@@ -44,9 +58,17 @@
 	</bean>
 	
 	<!-- the bean to be created via the factory bean -->
-	<bean id="productService"
+	<bean id="productService00"
 	    factory-bean="defaultServiceLocator"
 	    factory-method="createProductServiceInstance"/>
+	    
+	<bean id="productService01"
+	    factory-bean="defaultServiceLocator"
+	    factory-method="createProductServiceInstance">
+	    <constructor-arg>
+	    	<ref bean="connectDao"/>
+	    </constructor-arg>
+	</bean>
     <!-- *********************************************************** -->
     
 </beans>

@@ -1,5 +1,7 @@
 package main.service.ifac;
 
 public interface ProductService {
-	public int getPrice();
+	public String getProductInfo00(String name);
+
+	public String getProductInfo01(String name);
 }

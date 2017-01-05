@@ -9,6 +9,8 @@ public interface LogicService {
 
 	public String getProductInfo03(String name);
 
+	public String getProductInfo04(String name);
+
 	public String getProductInfo10(String name);
 
 }

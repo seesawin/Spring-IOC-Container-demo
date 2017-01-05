@@ -8,4 +8,8 @@ public interface ClientService {
 	}
 
 	public boolean isCreated();
+
+	public String getClientInfo00(String name);
+
+	public String getClientInfo01(String name);
 }
