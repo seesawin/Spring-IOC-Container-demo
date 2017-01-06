@@ -11,6 +11,7 @@ public class LogicServiceImpl implements LogicService{
 	
 	private ConnectDao connectDaoConstructor;
 	private ConnectDao connectDaoSetter;
+	private String idref;
 	
 	public LogicServiceImpl() {
 	}
@@ -37,6 +38,9 @@ public class LogicServiceImpl implements LogicService{
 	// Setter-based dependency injection
 	public void setConnectDao(ConnectDao connectDao0) {
 		this.connectDaoSetter = connectDao0;
+	}
+	public void setIdref(String idref) {
+		this.idref = idref;
 	}
 	//********************************************************************************
 	
@@ -76,8 +80,20 @@ public class LogicServiceImpl implements LogicService{
 		return copmoseInfo(name, infoMap); 
 	}
 	
+	public String getProductInfo14(String name) {
+		return connectDaoSetter.getInnerBeanInfo(name); 
+	}
+	
 	private String copmoseInfo(String name , Map<String, Object> infoMap) {
 		return "Hi " + name + ", the name is " + infoMap.get("name") + ", phone is " + infoMap.get("phone");  
 	}
 	
+	public String getIdrefValue() {
+		return this.idref;
+	}
+	
+	public void close() {
+		System.out.println("close!");
+	}
+
 }

@@ -12,5 +12,11 @@ public interface LogicService {
 	public String getProductInfo04(String name);
 
 	public String getProductInfo10(String name);
+	
+	public String getProductInfo14(String name);
+	
+	public String getIdrefValue();
+	
+	public void close();
 
 }

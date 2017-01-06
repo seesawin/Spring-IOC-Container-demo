@@ -5,4 +5,6 @@ import java.util.Map;
 
 public interface ConnectDao {
 	public List<Map<String, Object>> getInfo();
+
+	public String getInnerBeanInfo(String name);
 }

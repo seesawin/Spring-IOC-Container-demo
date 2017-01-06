@@ -6,6 +6,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import main.service.ifac.ClientService;
 import main.service.ifac.LogicService;
 import main.service.ifac.ProductService;
+import main.service.ifac.SimpleAccountService;
 import main.util.SpringContextsUtil;
 
 public class Action {
@@ -39,6 +40,23 @@ public class Action {
 		LogicService service10 = (LogicService) SpringContextsUtil.getBean("logicService10", LogicService.class);
 		String info10 = service10.getProductInfo10("SpringContextsUtil");
 		System.out.println("info10:" + info10);
+		
+		LogicService service11 = (LogicService) SpringContextsUtil.getBean("logicService11", LogicService.class);
+		String info11 = service11.getProductInfo10("SpringContextsUtil");
+		System.out.println("info11:" + info11);
+		
+		LogicService service12 = (LogicService) SpringContextsUtil.getBean("logicService12", LogicService.class);
+		String info12 = service12.getProductInfo10("SpringContextsUtil");
+		System.out.println("info12:" + info12);
+		
+		LogicService service13 = (LogicService) SpringContextsUtil.getBean("logicService13", LogicService.class);
+		String idrefValue = service13.getIdrefValue();
+		System.out.println("idrefValue:" + idrefValue);
+		
+		LogicService service14 = (LogicService) SpringContextsUtil.getBean("logicService14", LogicService.class);
+		String info14 = service14.getProductInfo14("SpringContextsUtil");
+		System.out.println("info14:" + info14);
+//		PropertyPlaceholderConfigurer mappings = (PropertyPlaceholderConfigurer) SpringContextsUtil.getBean("mappings", LogicService.class);
 		//********************************************************************************
 		
 		// via the static factory method 
@@ -60,5 +78,31 @@ public class Action {
 		String productInfo01 = productService01.getProductInfo01("SpringContextsUtil");
 		System.out.println("productInfo01:" + productInfo01);
 		//********************************************************************************
+		
+		// References to other beans (collaborators)
+//		SimpleAccountService accountService = (SimpleAccountService) SpringContextsUtil.getBean("accountService00", ProductService.class);
+//		String accInfo = accountService.getAccountInfo00("SpringContextsUtil");
+//		int maxLine = accountService.getMaxLine();
+//		System.out.println("accInfo:" + accInfo);
+//		System.out.println("maxLine:" + maxLine);
+		//********************************************************************************
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 	}
 }

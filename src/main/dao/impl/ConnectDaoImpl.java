@@ -9,6 +9,18 @@ import main.dao.ifac.ConnectDao;
 
 public class ConnectDaoImpl implements ConnectDao{
 	
+	public String name;
+	
+	public String age;
+	
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public void setAge(String age) {
+		this.age = age;
+	}
+
 	public List<Map<String, Object>> getInfo() {
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 		resultMap.put("name", "Robert");
@@ -18,6 +30,10 @@ public class ConnectDaoImpl implements ConnectDao{
 		resultList.add(resultMap);
 		
 		return resultList;
+	}
+	
+	public String getInnerBeanInfo(String name) {
+		return "Hi " + name + ", the name:" + this.name + ", age:" + age;
 	}
 
 }
