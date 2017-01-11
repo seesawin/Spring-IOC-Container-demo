@@ -4,6 +4,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import main.service.ifac.ClientService;
+import main.service.ifac.CollectionService;
 import main.service.ifac.LogicService;
 import main.service.ifac.ProductService;
 import main.service.ifac.SimpleAccountService;
@@ -31,9 +32,16 @@ public class Action {
 		System.out.println("info03:" + info03);
 		
 		LogicService service04 = (LogicService) SpringContextsUtil.getBean("logicService04", LogicService.class);
-		String info04 = service03.getProductInfo04("SpringContextsUtil");
+		String info04 = service04.getProductInfo04("SpringContextsUtil");
 		System.out.println("info04:" + info04);
 		
+		LogicService service05 = (LogicService) SpringContextsUtil.getBean("logicService05", LogicService.class);
+		String info05 = service05.getProductInfo04("SpringContextsUtil");
+		System.out.println("info05:" + info05);
+		
+		LogicService service06 = (LogicService) SpringContextsUtil.getBean("logicService06", LogicService.class);
+		String info06 = service06.getProductInfo04("SpringContextsUtil");
+		System.out.println("info06:" + info06);
 		//********************************************************************************
 		
 		// Setter-based dependency injection
@@ -87,22 +95,37 @@ public class Action {
 //		System.out.println("maxLine:" + maxLine);
 		//********************************************************************************
 		
+		// collection merging
+		CollectionService collectionService00 = (CollectionService) SpringContextsUtil.getBean("childComplexObject", CollectionService.class);
+		String propsInfo = collectionService00.getPropertiesInfo();
+		String listInfo = collectionService00.getListInfo();
+		String mapInfo = collectionService00.getMapInfo();
+		String setInfo = collectionService00.getSetInfo();
+		String nullInfo = collectionService00.getNullSet();
+		System.out.println("propsInfo:" + propsInfo);
+		System.out.println("listInfo:" + listInfo);
+		System.out.println("mapInfo:" + mapInfo);
+		System.out.println("setInfo:" + setInfo);
+		System.out.println("nullInfo:" + nullInfo);
+		//********************************************************************************
 		
+		// Compound property names
+//		LogicService compound = (LogicService) SpringContextsUtil.getBean("compound", LogicService.class);
+//		String compoundInfo1 = compound.getConnectDao().getInnerBeanInfo("compoundInfo1");
+//		System.out.println("compoundInfo1:" + compoundInfo1);
+		//********************************************************************************
 		
+		// Using depends-on
+		LogicService dependsOnBean = (LogicService) SpringContextsUtil.getBean("dependsOnBean", LogicService.class);
+		String dependsOnInfo = dependsOnBean.testInfo();
+		System.out.println("dependsOnInfo:" + dependsOnInfo);
+		//********************************************************************************
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+		// Using depends-on
+		LogicService lazyBean = (LogicService) SpringContextsUtil.getBean("lazyBean", LogicService.class);
+		String lazyBeanInfo = lazyBean.testInfo();
+		System.out.println("lazyBeanInfo:" + lazyBeanInfo);
+		//********************************************************************************
 		
 	}
 }

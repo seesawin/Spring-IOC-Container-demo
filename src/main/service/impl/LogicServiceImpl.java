@@ -39,6 +39,9 @@ public class LogicServiceImpl implements LogicService{
 	public void setConnectDao(ConnectDao connectDao0) {
 		this.connectDaoSetter = connectDao0;
 	}
+	public ConnectDao getConnectDao() {
+		return this.connectDaoSetter;
+	}
 	public void setIdref(String idref) {
 		this.idref = idref;
 	}
@@ -94,6 +97,10 @@ public class LogicServiceImpl implements LogicService{
 	
 	public void close() {
 		System.out.println("close!");
+	}
+	
+	public String testInfo() {
+		return "bean is created!";
 	}
 
 }

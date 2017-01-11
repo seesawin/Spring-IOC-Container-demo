@@ -2,6 +2,7 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:p="http://www.springframework.org/schema/p"
+    xmlns:c="http://www.springframework.org/schema/c"
     xsi:schemaLocation="http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans.xsd">
         
@@ -33,6 +34,14 @@
 	    	<ref bean="connectDao"/>
 	    </constructor-arg>
 	</bean>
+	
+	<!-- XML shortcut with the c-namespace -->
+    <bean id="logicService05" class="main.service.impl.LogicServiceImpl"
+    c:dao-ref="connectDao" c:b="false" />
+    
+    <!-- c-namespace index declaration -->
+	<bean id="logicService06" class="main.service.impl.LogicServiceImpl" 
+	c:_0-ref="connectDao" c:_1="false"/>
     <!-- *********************************************************** -->
     
 	<!-- Setter-based dependency injection -->
@@ -133,12 +142,76 @@
 <!-- 	    <property name="maxLine" ref="5566" /> -->
 <!-- 	</bean> -->
     <!-- *********************************************************** -->
-    
 
+	<!-- The following example demonstrates collection merging: -->
+	<!-- parnet -->
+	<bean id="moreComplexObject" abstract="true" class="main.service.impl.CollectionServiceImpl">
+	    <!-- results in a setAdminEmails(java.util.Properties) call -->
+	    <property name="adminEmails">
+	        <props>
+	            <prop key="administrator">administrator@example.org</prop>
+	            <prop key="support">support@example.org</prop>
+	            <prop key="development">development@example.org</prop>
+	        </props>
+	    </property>
+	    <!-- results in a setSomeList(java.util.List) call -->
+	    <property name="someList">
+	        <list>
+	            <value>a list element followed by a reference</value>
+	            <value></value>
+	            <ref bean="connectDao" />
+	        </list>
+	    </property>
+	    <!-- results in a setSomeMap(java.util.Map) call -->
+	    <property name="someMap">
+	        <map>
+	            <entry key="an entry" value="just some string"/>
+	            <entry key ="a ref" value-ref="connectDao"/>
+	        </map>
+	    </property>
+	    <!-- results in a setSomeSet(java.util.Set) call -->
+	    <property name="someSet">
+	        <set>
+				<!-- Strongly-typed collection -->
+	            <value>0.123</value>
+	            <value>95.123</value>
+	        </set>
+	    </property>
+	    
+	    <property name="nullSet">
+	       <null/>
+	    </property>
+	</bean>
+	
+	<!-- child -->
+	<bean id="childComplexObject" parent="moreComplexObject">
+        <property name="adminEmails">
+            <!-- the merge is specified on the child collection definition -->
+            <props merge="true">
+                <prop key="sales">sales@example.com</prop>
+                <prop key="support">support@example.co.uk</prop>
+            </props>
+        </property>
+    </bean>
+	<!-- *********************************************************** -->
     
+	<!-- Compound property names -->
+<!-- 	<bean id="compound" class="main.service.impl.LogicServiceImpl"> -->
+<!-- 	    <property name="connectDao.name" value="123456" /> -->
+<!-- 	</bean>	 -->
+    <!-- *********************************************************** -->
     
+	<!-- Using depends-on -->
+	<bean id="dependsOnBean" class="main.service.impl.LogicServiceImpl" depends-on="connectDao,childComplexObject">
+		<constructor-arg ref="connectDao"/>
+	</bean>
+	<!-- *********************************************************** -->
     
-    
+	<!-- Lazy-initialized beans -->
+	<!-- A lazy-initialized bean tells the IoC container to create a bean instance .
+		when it is first requested, rather than at startup. -->
+	<bean id="lazyBean" class="main.service.impl.LogicServiceImpl" lazy-init="true" />
+	<!-- *********************************************************** -->
     
     
     

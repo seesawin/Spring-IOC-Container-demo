@@ -1,5 +1,7 @@
 package main.service.ifac;
 
+import main.dao.ifac.ConnectDao;
+
 public interface LogicService {
 	public String getProductInfo00(String name);
 
@@ -18,5 +20,9 @@ public interface LogicService {
 	public String getIdrefValue();
 	
 	public void close();
+	
+	public ConnectDao getConnectDao();
+	
+	public String testInfo();
 
 }
